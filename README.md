@@ -11,5 +11,5 @@ Student Info
 
 * Student Name: Nguyễn Hữu Đức
 * Student ID: BA11-025
-* Group 1
+* Group 35
 
