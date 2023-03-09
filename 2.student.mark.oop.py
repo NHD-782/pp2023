@@ -69,4 +69,4 @@ for i in range(m):
 
 school.input_marks()
 
-school.show_marks()
+school.show_marks(
