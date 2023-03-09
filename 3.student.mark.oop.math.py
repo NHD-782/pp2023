@@ -54,9 +54,35 @@ class School:
                     if mark.course == course:
                         print(f"{mark.student.name}: {mark.value}")
                         
-    def show_GPA(self):
-                       
-        print(f"")        
+    def calculate_gpa(self, marks):
+        total_credit = 0
+        total_grade = 0
+        for mark in marks:
+            course = mark.course
+            course_credit = int(course.credit)
+            total_credit += course_credit
+            grade = self.calculate_grade(mark.value)
+            total_grade += grade * course_credit
+        gpa = total_grade / total_credit
+        return gpa
+    
+    def calculate_grade(self, value):
+        if value >= 18:
+            return 4.0
+        elif value >= 15:
+            return 3.0
+        elif value >= 10:
+            return 2.0
+        elif value >= 8:
+            return 1.0
+        else:
+            return 0.0
+    
+    def show_gpa(self):
+        student_id = input("Enter the ID of the student you want to calculate GPA for: ")
+        student_marks = [mark for mark in school.marks if mark.student.id == student_id]
+        gpa = self.calculate_gpa(student_marks)
+        print(f"GPA for student ID {student_id}: {gpa}")
 
 school = School()
 
@@ -73,3 +99,5 @@ for i in range(m):
 school.input_marks()
 
 school.show_marks()
+
+school.show_gpa()
