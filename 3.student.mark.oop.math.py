@@ -54,35 +54,31 @@ class School:
                     if mark.course == course:
                         print(f"{mark.student.name}: {mark.value}")
                         
-    def calculate_gpa(self, marks):
-        total_credit = 0
-        total_grade = 0
-        for mark in marks:
-            course = mark.course
-            course_credit = int(course.credit)
-            total_credit += course_credit
-            grade = self.calculate_grade(mark.value)
-            total_grade += grade * course_credit
-        gpa = total_grade / total_credit
-        return gpa
-    
-    def calculate_grade(self, value):
-        if value >= 18:
-            return 4.0
-        elif value >= 15:
-            return 3.0
-        elif value >= 10:
-            return 2.0
-        elif value >= 8:
-            return 1.0
+    def calculate_gpa(self, student):
+        total_credits = 0
+        total_grade_points = 0
+        for mark in self.marks:
+            if mark.student == student:
+                course = mark.course
+                credit = int(course.credit)
+                grade_point = self.get_grade_point(mark.value)
+                total_credits += credit
+                total_grade_points += credit * grade_point
+        if total_credits > 0:
+            gpa = total_grade_points / total_credits
         else:
-            return 0.0
-    
+            gpa = 0
+        return gpa
+
+    def get_grade_point(self, mark):
+        if mark >= 0:
+            return mark
+
     def show_gpa(self):
-        student_id = input("Enter the ID of the student you want to calculate GPA for: ")
-        student_marks = [mark for mark in school.marks if mark.student.id == student_id]
-        gpa = self.calculate_gpa(student_marks)
-        print(f"GPA for student ID {student_id}: {gpa}")
+        print("GPA for each student:")
+        for student in self.students:
+            gpa = self.calculate_gpa(student)
+            print(f"{student.name}: {gpa:.2f}")
 
 school = School()
 
@@ -98,6 +94,6 @@ for i in range(m):
 
 school.input_marks()
 
-school.show_marks()
-
 school.show_gpa()
+
+school.show_marks()
