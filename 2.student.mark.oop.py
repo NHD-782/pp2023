@@ -5,10 +5,9 @@ class Student:
         self.dob = dob
 
 class Course:
-    def __init__(self, id, name, credit):
+    def __init__(self, id, name):
         self.id = id
         self.name = name
-        self.credit = credit
 
 class Mark:
     def __init__(self, student, course, value):
@@ -69,4 +68,4 @@ for i in range(m):
 
 school.input_marks()
 
-school.show_marks(
+school.show_marks()
