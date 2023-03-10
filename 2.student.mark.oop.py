@@ -1,20 +1,25 @@
+# Creat class Student
 class Student:
     def __init__(self, id, name, dob):
         self.id = id
         self.name = name
         self.dob = dob
 
+# Creat class Course
 class Course:
-    def __init__(self, id, name):
+    def __init__(self, id, name, credit):
         self.id = id
         self.name = name
+        self.credit = credit
 
+# Creat class Mark
 class Mark:
     def __init__(self, student, course, value):
         self.student = student
         self.course = course
         self.value = value
 
+# Creat class School
 class School:
     def __init__(self):
         self.students = []
@@ -56,16 +61,18 @@ class School:
 
 school = School()
 
+# Input the number of students
 n = int(input("Input the number of students:\n"))
 for i in range(n):
     print(f"The information of student {i+1} is: ")
     school.add_student()
 
-m = int(input("Enter the number of courses:\n"))
+# Input the number of courses
+m = int(input("Input the number of courses:\n"))
 for i in range(m):
     print(f"Information of course {i+1} is: ")
     school.add_course()
 
-school.input_marks()
+school.input_marks() # Input marks for each student in each course
 
-school.show_marks()
+school.show_marks() # Print marks for each student in each course on the screen
