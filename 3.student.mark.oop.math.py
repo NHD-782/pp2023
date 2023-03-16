@@ -34,6 +34,14 @@ class School:
         dob = input("Student DoB: ")
         student = Student(id, name, dob)
         self.students.append(student)
+        
+    def show_all_student(self):
+        print("Students:")
+        print("| {0: <10} | {1: <20} | {2: <15} |".format('ID', 'Name', 'DoB'))
+        print("-" * 55)
+        for student in self.students:
+            print("| {0: <10} | {1: <20} | {2: <15} |".format(student.id, student.name, student.dob))
+        print()
 
     def add_course(self):
         id = input("Course ID: ")
@@ -41,6 +49,14 @@ class School:
         credit = input("Course credit: ")
         course = Course(id, name, credit)
         self.courses.append(course)
+
+    def show_all_courses(self):
+        print("Courses:")
+        print("| {0: <10} | {1: <20} | {2: <15} |".format('ID', 'Name', 'Credit'))
+        print("-" * 55)
+        for course in self.courses:
+            print("| {0: <10} | {1: <20} | {2: <15} |".format(course.id, course.name, course.credit))
+        print()
 
     def input_marks(self):
         print("Marks for each student in each course:")
@@ -75,6 +91,13 @@ class School:
             if len(gp_list) > 0:
                 gpa = np.sum(gp_list) / total_credit
                 print(f"GPA for {student.name}: {gpa:.2f}")
+                
+    def show_all_mark(self):
+        print("Marks for each students:")
+        print("| {0: <20} | {1: <20} | {2: <10} |".format('Student Name', 'Course Name', 'Value'))
+        print("-" * 60)
+        for mark in self.marks:
+            print("| {0: <20} | {1: <20} | {2: <10} |".format(mark.student.name, mark.course.name, mark.value))
 
 
 school = School()
@@ -84,15 +107,19 @@ n = int(input("Input the number of students:\n"))
 for i in range(n):
     print(f"The information of student {i+1} is: ")
     school.add_student()
+    
+school.show_all_student() # Print all the students input from keyboard
 
 # Input the number of courses
 m = int(input("Input the number of courses:\n"))
 for i in range(m):
     print(f"Information of course {i+1} is: ")
     school.add_course()
+    
+school.show_all_courses() # Print all the courses input from keyboard
 
 school.input_marks() # Input marks for each student in each course
 
-school.show_marks() # Print marks for each student in each course on the screen
+school.show_all_mark() # Print marks for each student in each course on the screen
 
 school.calculate_gpa() # Calculate and print all GPAs on the screen
